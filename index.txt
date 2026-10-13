@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>Доклад — Четвёртый крестовый поход</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;min-height:100%}
+body{font-family:'Inter',sans-serif;background-color:#faf7f2;color:#1e1e1e;line-height:1.6;letter-spacing:.2px;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding:2rem 1.5rem;background-image:radial-gradient(rgba(0,0,0,.02) 1px,transparent 1px);background-size:24px 24px}
+
+/* ============ АНИМАЦИЯ КНИГИ (ускоренная) ============ */
+.book-intro{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 50%,#faf7f2 0%,#f0e8df 60%,#e2d5c8 100%);display:flex;align-items:center;justify-content:center;perspective:2200px;transition:opacity .6s ease .2s,visibility 0s linear .8s;cursor:pointer;padding:2rem;overflow:hidden}
+.book-intro.finished{opacity:0;visibility:hidden;pointer-events:none}
+
+.intro-meaning{position:absolute;left:5%;top:50%;transform:translateY(-50%);max-width:340px;opacity:0;animation:meaningAppear .8s ease .9s forwards;z-index:5}
+@keyframes meaningAppear{from{opacity:0;transform:translateY(-50%) translateX(-30px)}to{opacity:1;transform:translateY(-50%) translateX(0)}}
+.intro-meaning .meaning-label{font-family:'Inter',sans-serif;font-weight:500;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:#9b8b7a;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem}
+.intro-meaning .meaning-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#d9cec0,transparent)}
+.intro-meaning h3{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.5rem,2.5vw,2rem);color:#1e1e1e;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.5rem}
+.intro-meaning h3 em{font-style:italic;font-weight:700;color:#b87c4b;text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:#e6d5c2;text-underline-offset:8px}
+.intro-meaning blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:.95rem;color:#3a322b;line-height:1.6;padding-left:1rem;border-left:3px solid #b87c4b;margin-bottom:1.2rem}
+.intro-meaning blockquote .author{display:block;font-family:'Caveat',cursive;font-style:normal;font-size:1.05rem;color:#b87c4b;margin-top:.4rem}
+.intro-meaning blockquote .author::before{content:'— '}
+.intro-meaning .meaning-final{font-family:'Caveat',cursive;font-size:1.3rem;color:#5f4e3c;margin-top:1.5rem;padding-top:1.2rem;border-top:1px dashed #d9c7b4;transform:rotate(-1deg)}
+.intro-meaning .meaning-final b{color:#b87c4b;font-weight:700}
+
+.click-hint{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:'Caveat',cursive;font-size:clamp(1.1rem,3vw,1.4rem);color:#8b5a2b;letter-spacing:.5px;text-shadow:0 1px 2px rgba(255,255,255,.8);animation:hintPulse 1.5s ease-in-out infinite;z-index:10;white-space:nowrap}
+@keyframes hintPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
+
+.book-container{position:relative;width:min(90vw,540px);height:min(75vh,720px);transform-style:preserve-3d;animation:bookRise .7s cubic-bezier(.4,1.3,.6,1) forwards;opacity:0;margin-left:auto;margin-right:auto;transition:transform .2s ease}
+.book-intro:hover .book-container{transform:scale(1.02)}
+@keyframes bookRise{0%{opacity:0;transform:translateY(60px) scale(.75) rotateX(-20deg)}100%{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
+
+.book-cover{position:absolute;inset:0;width:50%;background:linear-gradient(145deg,#f7f0e4 0%,#e8dcc8 50%,#d9c7b4 100%);border-radius:12px 4px 4px 12px;border:3px solid #b87c4b;box-shadow:0 0 50px rgba(184,124,75,.35),inset 0 0 60px rgba(184,124,75,.15),0 30px 50px -20px rgba(0,0,0,.2);transform-origin:right center;transform-style:preserve-3d;animation:coverOpen 1.2s cubic-bezier(.55,.06,.44,1) .4s forwards;z-index:3;backface-visibility:hidden;overflow:hidden}
+@keyframes coverOpen{0%{transform:rotateY(0deg)}100%{transform:rotateY(-168deg)}}
+.book-cover::before{content:'';position:absolute;inset:12px;border:2px double #b87c4b;border-radius:8px 4px 4px 8px;box-shadow:inset 0 0 20px rgba(184,124,75,.2)}
+.book-cover::after{content:'';position:absolute;right:6px;top:8%;bottom:8%;width:5px;background:linear-gradient(90deg,transparent,#b87c4b,transparent);border-radius:3px;box-shadow:inset 0 0 8px rgba(184,124,75,.5)}
+
+.cover-cross{position:absolute;top:14%;left:50%;transform:translateX(-50%);font-size:clamp(2rem,6vw,3rem);color:#b87c4b;opacity:.65;text-shadow:0 0 16px rgba(184,124,75,.4)}
+.cover-title{position:absolute;top:32%;left:50%;transform:translateX(-50%) rotate(-90deg);transform-origin:center;color:#8b5a2b;font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1rem,3vw,1.4rem);letter-spacing:.35em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 2px rgba(255,255,255,.6);width:max-content}
+.cover-number{position:absolute;bottom:12%;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,8vw,3.2rem);color:#8b5a2b;letter-spacing:4px;text-shadow:2px 2px 0 rgba(255,255,255,.5),0 0 20px rgba(184,124,75,.4)}
+.cover-number-sub{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.32em;letter-spacing:.35em;color:#b87c4b;margin-top:.4rem;text-transform:uppercase}
+
+.book-pages{position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,#faf6f0 0%,#f0e8df 100%);border-radius:4px 12px 12px 4px;box-shadow:inset 6px 0 16px rgba(184,124,75,.12),8px 0 24px rgba(0,0,0,.12),inset 0 0 0 1px rgba(255,255,255,.6);z-index:2;overflow:hidden;border:3px solid #d9c7b4;border-left:none}
+.book-pages::before{content:'';position:absolute;inset:18px;border:2px solid rgba(184,124,75,.25);border-radius:4px;pointer-events:none}
+.book-pages-text{padding:3rem 2rem;height:100%;display:flex;flex-direction:column;justify-content:center;opacity:0;animation:pageTextAppear .7s ease .9s forwards;text-align:center;position:relative;z-index:2}
+@keyframes pageTextAppear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.book-pages-text .page-cross{font-size:clamp(2rem,6vw,3rem);margin-bottom:1rem;display:block}
+.book-pages-text h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.2rem,3.5vw,1.7rem);color:#8b5a2b;margin-bottom:1rem;line-height:1.2;letter-spacing:.5px}
+.book-pages-text .ornament{width:60px;height:2px;background:linear-gradient(90deg,transparent,#b87c4b,transparent);margin:0 auto 1.2rem}
+.book-pages-text p{font-family:'Caveat',cursive;font-size:clamp(1rem,3vw,1.25rem);color:#5f4e3c;line-height:1.5}
+.book-pages-text .latin{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(.85rem,2.5vw,1rem);color:#b87c4b;margin-top:1rem;padding-top:1rem;border-top:1px dashed #d9c7b4}
+
+.book-spine{position:absolute;top:0;left:50%;width:4px;height:100%;background:linear-gradient(to right,#8b5a2b,#d9a87a,#8b5a2b);transform:translateX(-50%);z-index:4;box-shadow:0 0 12px rgba(184,124,75,.5)}
+
+.flash{position:absolute;inset:-50px;background:radial-gradient(circle,#fff8dc,#f0e8df,transparent 70%);opacity:0;pointer-events:none;z-index:20}
+.flash.active{animation:flashIn .8s ease-out forwards}
+@keyframes flashIn{0%{opacity:0;transform:scale(.3)}40%{opacity:.9}100%{opacity:0;transform:scale(2.2)}}
+
+/* ============ ПРОГРЕСС ЧТЕНИЯ ============ */
+.reading-progress{position:fixed;top:0;left:0;right:0;height:4px;background:rgba(217,206,192,.3);z-index:200}
+.reading-progress-fill{height:100%;background:linear-gradient(90deg,#b87c4b,#d9a87a,#b87c4b);width:0%;transition:width .1s linear;box-shadow:0 0 12px rgba(184,124,75,.6)}
+
+/* ============ ГЛАВНАЯ КАРТОЧКА ============ */
+.report-wrapper{position:relative;z-index:10;max-width:1000px;margin:0 auto;padding-bottom:80px;opacity:0;animation:reportReveal .8s cubic-bezier(.22,.61,.36,1) 1.8s forwards;transform:translateY(20px)}
+@keyframes reportReveal{to{opacity:1;transform:translateY(0)}}
+.card{background:#fff;border-radius:56px;box-shadow:0 30px 50px -20px rgba(0,0,0,.15),0 0 0 1px rgba(255,255,255,.8) inset,0 0 0 1px rgba(0,0,0,.02);padding:4rem 3rem;transition:box-shadow .3s ease}
+.card:hover{box-shadow:0 40px 60px -18px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.9) inset,0 0 0 1px rgba(0,0,0,.02)}
+
+/* ============ ТИТУЛЬНЫЙ ЛИСТ ============ */
+.report-header{text-align:center;margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:2px dashed #e2d9d0}
+.report-header .school{font-family:'Inter',sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:#9b8b7a;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:.75rem}
+.report-header .school::before,.report-header .school::after{content:'';width:40px;height:1px;background:linear-gradient(90deg,transparent,#d9cec0)}
+.report-header .school::after{background:linear-gradient(90deg,#d9cec0,transparent)}
+.report-header h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,6vw,3.5rem);color:#1e1e1e;line-height:1.08;letter-spacing:-.02em;margin-bottom:.75rem}
+.report-header .subtitle{font-family:'Caveat',cursive;font-size:clamp(1.3rem,4vw,1.9rem);color:#5f4e3c;margin-bottom:1.5rem;display:inline-block;padding-left:1rem;border-left:4px solid #b87c4b;transform:rotate(-1deg)}
+.report-header .divider{width:80px;height:3px;background:linear-gradient(90deg,#b87c4b,#e6d5c2);margin:1.5rem auto;border-radius:2px}
+
+/* ============ СЕКЦИИ ДОКЛАДА ============ */
+.report-section{background:#f7f2ec;border-radius:32px;padding:2.5rem 2.5rem;margin-bottom:2rem;box-shadow:0 4px 10px rgba(0,0,0,.02);border:1px solid #ffffff80;transition:all .4s cubic-bezier(.4,1.3,.6,1);opacity:0;transform:translateY(20px)}
+.report-section.visible{opacity:1;transform:translateY(0)}
+.report-section:hover{background:#f0e8df;box-shadow:0 16px 24px -12px rgba(0,0,0,.12);border-color:#e2d5c8}
+.report-section h2{font-family:'Playfair Display',serif;font-weight:700;color:#1e1e1e;font-size:clamp(1.4rem,4.5vw,1.9rem);margin-bottom:1.5rem;letter-spacing:-.01em;display:flex;align-items:center;gap:1rem;line-height:1.2}
+.report-section h2 .num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:linear-gradient(135deg,#b87c4b,#8b5a2b);color:#fff;border-radius:50%;font-size:.7em;flex-shrink:0;box-shadow:0 6px 16px rgba(184,124,75,.4);font-weight:800;font-family:'Playfair Display',serif}
+.report-section h3{font-family:'Playfair Display',serif;font-weight:700;color:#b87c4b;font-size:clamp(1.15rem,3.5vw,1.35rem);margin:1.75rem 0 .9rem;letter-spacing:-.01em}
+.report-section p{font-family:'Inter',sans-serif;font-size:clamp(1rem,3vw,1.15rem);color:#2e2e2e;line-height:1.8;margin-bottom:1rem;font-weight:300;text-align:justify}
+.report-section p b{color:#b87c4b;font-weight:700;background:linear-gradient(120deg,#f3ebe3 0%,#f3ebe3 40%,transparent 80%);padding:.1rem .3rem;border-radius:8px}
+.report-section p i{color:#8b6b4b;font-style:italic;font-family:'Playfair Display',serif}
+.report-section ul{list-style:none;margin:1rem 0;padding-left:0}
+.report-section ul li{font-family:'Inter',sans-serif;font-size:clamp(.98rem,2.9vw,1.1rem);color:#2e2e2e;line-height:1.75;margin-bottom:.85rem;padding-left:2rem;position:relative;font-weight:300}
+.report-section ul li::before{content:'✦';position:absolute;left:0;top:0;color:#b87c4b;font-size:1.1em;text-shadow:0 0 8px rgba(184,124,75,.4)}
+.report-section ul li b{color:#b87c4b;font-weight:700}
+
+/* ============ КАРТИНКА ============ */
+.illustration{margin:2rem 0;border-radius:32px;overflow:hidden;box-shadow:0 12px 28px -12px rgba(0,0,0,.2);border:1px solid #f0e8df;position:relative;background:#f7f2ec}
+.illustration img{width:100%;height:auto;display:block;transition:transform .5s ease}
+.illustration:hover img{transform:scale(1.02)}
+.illustration-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:2rem 1.5rem 1rem;color:#fff;font-family:'Caveat',cursive;font-size:clamp(1rem,3vw,1.3rem);text-shadow:0 2px 8px rgba(0,0,0,.5);line-height:1.3}
+.illustration-caption b{color:#ffd700;font-family:'Inter',sans-serif;font-weight:700;font-size:.85em;display:block;margin-bottom:.2rem;letter-spacing:.5px;text-transform:uppercase}
+
+/* ============ КАРТОЧКИ-ФАКТЫ ============ */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin:1.5rem 0}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:1.5rem 0}
+.card-item{background:#fff;border-radius:28px;padding:1.8rem 1.5rem;transition:all .25s ease;border:1px solid #f0e8df;box-shadow:0 4px 10px rgba(0,0,0,.02);display:flex;flex-direction:column;gap:.6rem}
+.card-item:hover{background:#fffdf9;transform:translateY(-4px);box-shadow:0 16px 24px -12px rgba(0,0,0,.12);border-color:#e2d5c8}
+.card-icon{font-size:2.2rem;line-height:1;margin-bottom:.25rem;filter:drop-shadow(0 4px 4px rgba(0,0,0,.05))}
+.card-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;color:#1e1e1e;letter-spacing:-.01em}
+.card-text{font-family:'Inter',sans-serif;font-weight:300;font-size:.95rem;color:#3b3b3b;line-height:1.65}
+.card-text strong{font-weight:700;color:#b87c4b;background:linear-gradient(120deg,#f3ebe3 0%,#f3ebe3 40%,transparent 80%);padding:.1rem .3rem;border-radius:8px}
+
+/* ============ ПЕРСОНАЖИ ============ */
+.person{display:flex;gap:1.25rem;padding:1.5rem;background:#fff;border-radius:28px;border:1px solid #f0e8df;transition:all .25s ease;align-items:flex-start}
+.person:hover{background:#fffdf9;transform:translateX(4px);box-shadow:0 12px 24px -12px rgba(0,0,0,.12)}
+.person-avatar{font-size:2.2rem;line-height:1;flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:#f7f2ec;border-radius:50%;filter:drop-shadow(0 2px 4px rgba(0,0,0,.05))}
+.person-info{flex:1}
+.person-name{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;color:#1e1e1e;margin-bottom:.2rem}
+.person-role{font-family:'Caveat',cursive;font-size:1.15rem;color:#b87c4b;margin-bottom:.5rem}
+.person-desc{font-family:'Inter',sans-serif;font-weight:300;font-size:.9rem;color:#3b3b3b;line-height:1.6}
+.person-desc strong{font-weight:700;color:#b87c4b}
+
+/* ============ ВЫДЕЛЕННЫЙ БЛОК ============ */
+.callout{background:linear-gradient(135deg,#f7f2ec 0%,#f0e8df 100%);border-radius:24px;padding:1.5rem 2rem;margin:1.5rem 0;border-left:5px solid #b87c4b;font-family:'Inter',sans-serif;font-size:clamp(.98rem,2.9vw,1.1rem);color:#2e2e2e;line-height:1.75;font-weight:300;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.03)}
+.callout::before{content:'✦';position:absolute;top:.8rem;right:1.2rem;font-size:1.3rem;color:#b87c4b;opacity:.4}
+.callout b{color:#b87c4b;font-weight:700}
+
+/* ============ ЦИТАТА ============ */
+.quote{background:linear-gradient(135deg,#faf6f0 0%,#f5ede4 100%);border-radius:24px;padding:2rem 2.5rem;margin:2rem 0;border-left:5px solid #b87c4b;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.05rem,3vw,1.25rem);color:#3a322b;line-height:1.6;position:relative;box-shadow:0 6px 20px rgba(0,0,0,.04);text-align:center}
+.quote::before{content:'“';position:absolute;top:-1.2rem;left:1rem;font-size:5rem;color:#d9c7b4;font-family:'Playfair Display',serif;line-height:1;opacity:.6}
+.quote::after{content:'”';position:absolute;bottom:-2.5rem;right:1rem;font-size:5rem;color:#d9c7b4;font-family:'Playfair Display',serif;line-height:1;opacity:.6}
+
+/* ============ ХРОНОЛОГИЯ ============ */
+.timeline{position:relative;padding:1rem 0;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:22px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#b87c4b,#e6d5c2);border-radius:2px;box-shadow:0 0 10px rgba(184,124,75,.3)}
+.timeline-item{position:relative;padding:1.1rem 1.4rem 1.1rem 4rem;margin-bottom:1rem;background:#fff;border-radius:20px;border:1px solid #f0e8df;transition:all .3s ease}
+.timeline-item:hover{transform:translateX(6px);box-shadow:0 10px 20px -10px rgba(0,0,0,.1);border-color:#e2d5c8}
+.timeline-item::before{content:'';position:absolute;left:13px;top:50%;transform:translateY(-50%);width:20px;height:20px;background:radial-gradient(circle,#b87c4b,#8b5a2b);border-radius:50%;box-shadow:0 0 12px rgba(184,124,75,.6);border:2px solid #fff;animation:dotPulse 2s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.15)}}
+.timeline-item .t-date{color:#b87c4b;font-weight:700;font-size:clamp(.95rem,3vw,1.1rem);display:block;margin-bottom:.3rem;letter-spacing:.5px;font-family:'Playfair Display',serif}
+.timeline-item .t-text{color:#2e2e2e;font-size:clamp(.92rem,2.8vw,1.05rem);line-height:1.65;font-family:'Inter',sans-serif;font-weight:300}
+.timeline-item .t-text b{color:#b87c4b;font-weight:700}
+
+/* ============ ТАБЛИЦА ============ */
+.table-wrap{border-radius:24px;overflow:hidden;box-shadow:0 8px 24px -8px rgba(0,0,0,.08);border:1px solid #f0e8df;margin:1.5rem 0;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:clamp(.85rem,2.7vw,1rem);background:#fff}
+th{background:linear-gradient(135deg,#b87c4b,#8b5a2b);color:#fff;padding:1rem 1.2rem;text-align:left;font-weight:600;font-size:.9em;letter-spacing:.5px;font-family:'Inter',sans-serif;text-transform:uppercase}
+td{padding:.9rem 1.2rem;border-bottom:1px solid #f0e8df;font-size:.95em;color:#2e2e2e;font-family:'Inter',sans-serif;line-height:1.55;font-weight:300}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#faf6f0}
+td b{color:#b87c4b;font-weight:700}
+
+/* ============ ФУТЕР ============ */
+.footer-note{margin-top:3rem;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem;font-family:'Inter',sans-serif;font-size:.8rem;color:#a79788;letter-spacing:.03em;text-transform:uppercase;border-top:1px solid #efe9e2;padding-top:2rem;text-align:center}
+.footer-note span{display:flex;align-items:center;gap:.5rem}
+.heart{color:#b87c4b;font-size:1.1rem;animation:pulse 2s infinite ease-in-out}
+@keyframes pulse{0%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}100%{opacity:.7;transform:scale(1)}}
+
+/* ============ КНОПКИ ВВЕРХ / ВНИЗ ============ */
+.nav-buttons{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-btn{width:52px;height:52px;background:linear-gradient(135deg,#b87c4b,#8b5a2b);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:0 8px 25px rgba(184,124,75,.4);transition:all .3s;opacity:0;visibility:hidden;color:#fff}
+.nav-btn.show{opacity:1;visibility:visible}
+.nav-btn:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 12px 35px rgba(184,124,75,.6)}
+.nav-btn:active{transform:scale(.95)}
+
+/* ============ АДАПТИВНОСТЬ ============ */
+@media (max-width:1100px){
+  .intro-meaning{max-width:280px;left:3%}
+  .intro-meaning h3{font-size:1.4rem}
+  .intro-meaning blockquote{font-size:.85rem}
+}
+@media (max-width:900px){
+  .intro-meaning{display:none}
+  .book-container{margin:0 auto}
+}
+@media (max-width:700px){
+  body{padding:1rem}
+  .card{padding:2rem 1.5rem;border-radius:36px}
+  .report-header h1{font-size:2rem}
+  .report-header .subtitle{font-size:1.3rem}
+  .report-section{padding:1.8rem 1.5rem;border-radius:24px}
+  .report-section p{text-align:left}
+  .grid-3,.grid-2{grid-template-columns:1fr;gap:1rem}
+  .quote{padding:1.5rem 1.5rem}
+  .quote::before,.quote::after{font-size:3rem}
+  .quote::before{top:-.8rem}
+  .quote::after{bottom:-1.8rem}
+  .person{flex-direction:column;align-items:center;text-align:center}
+  .timeline-item{padding:1rem 1rem 1rem 3.5rem}
+  .illustration-caption{padding:1.5rem 1rem .8rem;font-size:.95rem}
+  .book-container{width:95vw;height:65vh}
+  .book-pages-text{padding:1.5rem 1rem}
+  .cover-title{font-size:.85rem;letter-spacing:.2em}
+}
+@media (max-width:400px){
+  .card{padding:1.5rem 1rem}
+  .report-header h1{font-size:1.6rem}
+  .report-section h2{font-size:1.2rem;gap:.6rem}
+  .report-section h2 .num{width:36px;height:36px}
+}
+
+/* ============ ПЕЧАТЬ ============ */
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .book-intro,.nav-buttons,.reading-progress{display:none!important}
+  .card{box-shadow:none;border-radius:0;padding:0}
+  .report-wrapper{opacity:1!important;transform:none!important;animation:none!important}
+  .report-section{background:#fff;border:1px solid #ccc;box-shadow:none;page-break-inside:avoid;opacity:1!important;transform:none!important}
+  .report-header h1{color:#000}
+  .report-section h2{color:#000}
+  .report-section h2 .num{background:#000;color:#fff}
+  .report-section p,.report-section ul li,.timeline-item .t-text,td{color:#000}
+  .callout,.quote{background:#f5f5f5;border:1px solid #ccc}
+  .quote{color:#000}
+  .illustration{box-shadow:none;border:1px solid #ccc}
+  .illustration-caption{position:static;background:#f5f5f5;color:#000;text-shadow:none}
+  .illustration-caption b{color:#000}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ АНИМАЦИЯ КНИГИ + СМЫСЛОВОЙ БЛОК ============ -->
+<div class="book-intro" id="bookIntro">
+
+  <aside class="intro-meaning">
+    <div class="meaning-label">размышление</div>
+    <h3>Что такое <em>история</em>?</h3>
+    <blockquote>
+      «История — это не то, что было. Это то, что мы помним и чему учимся».
+      <span class="author">Геродот</span>
+    </blockquote>
+    <blockquote>
+      «История — это наука о людях во времени».
+      <span class="author">Марк Блок</span>
+    </blockquote>
+    <blockquote>
+      «История — это не прошлое, это связь между прошлым и настоящим».
+      <span class="author">Р. Дж. Коллингвуд</span>
+    </blockquote>
+    <div class="meaning-final">Каждый поход, каждая ошибка — <b>урок для будущего</b>.</div>
+  </aside>
+
+  <div class="book-container">
+    <div class="book-pages">
+      <div class="book-pages-text">
+        <span class="page-cross">⚔️</span>
+        <h2>Четвёртый крестовый поход</h2>
+        <div class="ornament"></div>
+        <p>1202–1204</p>
+        <div class="latin">«Vae victis!» — Горе побеждённым!</div>
+      </div>
+    </div>
+    <div class="book-cover">
+      <div class="cover-cross">✝</div>
+      <div class="cover-title">Дневник</div>
+      <div class="cover-number">IV<span class="cover-number-sub">Крестовый поход</span></div>
+    </div>
+    <div class="book-spine"></div>
+    <div class="flash"></div>
+  </div>
+
+  <div class="click-hint">👆 нажми на книгу, чтобы открыть</div>
+</div>
+
+<div class="reading-progress"><div class="reading-progress-fill" id="readingProgress"></div></div>
+
+<!-- ============ ДОКЛАД ============ -->
+<div class="report-wrapper" id="reportWrapper">
+<div class="card">
+
+  <header class="report-header">
+    <div class="school">История Средних веков</div>
+    <h1>Четвёртый крестовый поход</h1>
+    <div class="subtitle">1202–1204 годы</div>
+    <div class="divider"></div>
+  </header>
+
+  <!-- 1 ВВЕДЕНИЕ -->
+  <section class="report-section">
+    <h2><span class="num">1</span>Введение</h2>
+    <p>Четвёртый крестовый поход — один из самых трагических и противоречивых событий в истории Средневековья. Он начался как религиозная экспедиция, целью которой было освобождение Иерусалима от мусульман, но закончился разграблением христианского Константинополя — столицы православной Византии.</p>
+    <p>Этот поход наглядно показывает, как религиозные идеи могут быть использованы для достижения политических и торговых целей. Именно поэтому его изучение важно для понимания не только истории Средневековья, но и природы человеческих конфликтов в целом.</p>
+    <p><b>Цель доклада:</b> рассказать о причинах, ходе и последствиях Четвёртого крестового похода, а также показать, почему он стал поворотным событием в истории Европы и Византии.</p>
+  </section>
+
+  <!-- 2 ЧТО ТАКОЕ КРЕСТОВЫЕ ПОХОДЫ -->
+  <section class="report-section">
+    <h2><span class="num">2</span>Что такое крестовые походы</h2>
+    <p><b>Крестовые походы</b> — это военные экспедиции западноевропейских рыцарей на Восток, организованные католической церковью в XI–XIII веках. Формальной целью было освобождение Гроба Господня в Иерусалиме от мусульман. Всего состоялось восемь основных походов — с 1096 по 1270 год.</p>
+    <p>Первый крестовый поход (1096–1099) оказался успешным: крестоносцы взяли Иерусалим и создали на Востоке несколько христианских государств. Однако уже в 1187 году египетский султан Саладин отбил Иерусалим, и последующие походы успеха не принесли.</p>
+    <div class="callout">
+      <b>Важно понимать:</b> крестовые походы были не только религиозным, но и политическим явлением. За ними стояли интересы папства, европейских королей, итальянских торговых республик и рыцарства, искавшего богатства и земель.
+    </div>
+  </section>
+
+  <!-- 3 ПРИЧИНЫ -->
+  <section class="report-section">
+    <h2><span class="num">3</span>Причины Четвёртого крестового похода</h2>
+    <p>Четвёртый крестовый поход был объявлен в 1198 году папой римским <b>Иннокентием III</b> — одним из самых влиятельных пап Средневековья. Он мечтал о новом походе, который укрепил бы авторитет католической церкви и, возможно, привёл бы к объединению католической и православной церквей под главенством Рима.</p>
+    <h3>Основные причины</h3>
+    <ul>
+      <li><b>Религиозная:</b> освобождение Иерусалима от мусульман.</li>
+      <li><b>Политическая:</b> укрепление власти папы и европейских монархов.</li>
+      <li><b>Торговая:</b> Венеция стремилась ослабить своего главного конкурента — Византию.</li>
+      <li><b>Экономическая:</b> рыцари искали богатства и новых земель.</li>
+    </ul>
+    <p>Особую роль в походе сыграла <b>Венецианская республика</b>. Её дож Энрико Дандоло взялся перевезти крестоносцев на кораблях, но потребовал огромную сумму — 85 000 марок серебра. Денег у рыцарей не было, и тогда Венеция предложила им «отработать» долг — захватить город Задар на Адриатике.</p>
+    <div class="callout">
+      <b>Интересный факт:</b> Задар был христианским городом, принадлежавшим Венгрии. Папа Иннокентий III запретил нападать на него и даже отлучил крестоносцев от церкви, но это не остановило поход.
+    </div>
+  </section>
+
+  <!-- 4 ГЛАВНЫЕ ЛЮДИ -->
+  <section class="report-section">
+    <h2><span class="num">4</span>Главные действующие лица</h2>
+    <p>В Четвёртом крестовом походе участвовали яркие исторические личности, чьи амбиции и решения определили ход событий.</p>
+
+    <div class="grid-2">
+      <div class="person">
+        <div class="person-avatar">👑</div>
+        <div class="person-info">
+          <div class="person-name">Энрико Дандоло</div>
+          <div class="person-role">Дож Венеции, 1107–1205</div>
+          <div class="person-desc">
+            Слепой, но невероятно хитрый и амбициозный правитель.
+            Именно он предложил крестоносцам «отработать» долг,
+            направив их сначала на Задар, а затем на Константинополь.
+            В 96 лет лично участвовал в штурме города.
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="person-avatar">⛪</div>
+        <div class="person-info">
+          <div class="person-name">Иннокентий III</div>
+          <div class="person-role">Папа Римский, 1161–1216</div>
+          <div class="person-desc">
+            Инициатор похода. Мечтал объединить христианские церкви
+            под властью Рима. Был в ужасе от разграбления Константинополя,
+            но в итоге принял его как «волю Божью».
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="person-avatar">🛡️</div>
+        <div class="person-info">
+          <div class="person-name">Бонифаций Монферратский</div>
+          <div class="person-role">Предводитель похода, 1150–1207</div>
+          <div class="person-desc">
+            Опытный полководец, связанный с Византией родственными узами.
+            После захвата Константинополя стал королём новообразованного
+            Фессалоникского королевства. Погиб в бою с болгарами.
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="person-avatar">📜</div>
+        <div class="person-info">
+          <div class="person-name">Жоффруа де Виллардуэн</div>
+          <div class="person-role">Хронист, 1150–1213</div>
+          <div class="person-desc">
+            Маршал Шампани, участник похода. Автор знаменитой хроники
+            «Завоевание Константинополя» — главного источника о событиях.
+            Писал о походе с позиции его участника и очевидца.
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="person-avatar">👑</div>
+        <div class="person-info">
+          <div class="person-name">Алексей IV Ангел</div>
+          <div class="person-role">Византийский принц, ок. 1182–1204</div>
+          <div class="person-desc">
+            Сын свергнутого императора Исаака II. Обещал крестоносцам
+            огромные деньги за восстановление на троне. Не смог собрать
+            обещанное, что привело к новому штурму. Погиб в тюрьме.
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="person-avatar">⚔️</div>
+        <div class="person-info">
+          <div class="person-name">Рыцари-крестоносцы</div>
+          <div class="person-role">Франция, Фландрия, Италия</div>
+          <div class="person-desc">
+            В основном младшие сыновья знатных родов, не имевшие наследства.
+            Искали славы, богатства и земель. Многие шли с искренней верой,
+            но оказались пешками в политической игре.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 ХОД ПОХОДА -->
+  <section class="report-section">
+    <h2><span class="num">5</span>Ход похода</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="t-date">1198 год</span>
+        <span class="t-text">Папа Иннокентий III призвал к новому крестовому походу. Рыцари откликнулись, но денег на снаряжение не было.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="t-date">1201 год</span>
+        <span class="t-text">Крестоносцы заключили договор с Венецией. Венецианский дож Энрико Дандоло предоставил флот за 85 000 марок серебра.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="t-date">ноябрь 1202 года</span>
+        <span class="t-text">Крестоносцы, не имея возможности заплатить, по требованию Венеции захватили христианский город Задар и разграбили его.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="t-date">1203 год</span>
+        <span class="t-text">К крестоносцам обратился царевич Алексей — сын свергнутого византийского императора. Он пообещал 200 000 марок серебра и военную помощь в обмен на восстановление отца на троне.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="t-date">июль 1203 года</span>
+        <span class="t-text">Крестоносцы подошли к Константинополю. Император Алексей III бежал, на престол вернулся Исаак II и его сын Алексей IV. Обещанные деньги выплачены не были.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="t-date">12–13 апреля 1204 года</span>
+        <span class="t-text">Крестоносцы штурмом взяли Константинополь. Город был разграблен в течение трёх дней. Это событие стало главным итогом похода.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 КОНСТАНТИНОПОЛЬ -->
+  <section class="report-section">
+    <h2><span class="num">6</span>Образ Константинополя в веках</h2>
+    <p>Перед вами — художественная реконструкция одного из самых трагических моментов Четвёртого крестового похода: <b>штурм Константинополя</b> в апреле 1204 года. Эта иллюстрация помогает представить масштаб события, которое изменило ход европейской истории.</p>
+
+    <div class="illustration">
+      <img src="https://cs10.pikabu.ru/post_img/2020/11/03/6/og_og_1604391895258970360.jpg" alt="Штурм Константинополя крестоносцами в 1204 году — художественная реконструкция">
+      <div class="illustration-caption">
+        <b>Штурм Константинополя · 1204 год</b>
+        Художественная реконструкция: крестоносцы врываются в город
+      </div>
+    </div>
+
+    <h3>Что изображено на картинке</h3>
+    <p>На иллюстрации запечатлён момент, когда рыцари-крестоносцы, шедшие «освобождать Гроб Господень», ворвались в величайший христианский город Европы. Это не просто батальная сцена — это символ крушения идеалов крестового движения.</p>
+    <ul>
+      <li><b>Крестоносцы в доспехах</b> — тяжёлая рыцарская конница и пехота, характерная для Западной Европы XIII века. На щитах и плащах — кресты, символ их миссии.</li>
+      <li><b>Стены и башни Константинополя</b> — знаменитые Феодосиевы стены, которые считались неприступными более 1000 лет. Их падение стало шоком для всего христианского мира.</li>
+      <li><b>Атмосфера трагедии</b> — огонь, дым, хаос. Город, который должен был быть спасён, становится добычей. Это момент, когда крест обратился против креста.</li>
+      <li><b>Защитники города</b> — византийские воины и горожане, которые отчаянно пытаются защитить свой дом. Многие из них погибли или были проданы в рабство.</li>
+    </ul>
+
+    <div class="callout">
+      <b>Почему это важно:</b> Константинополь был крупнейшим христианским городом Европы. Его разграбление в 1204 году стало символом того, как религиозные идеи могут быть использованы для достижения политических и торговых целей. Именно после этого события раскол между католической и православной церквями стал окончательным.
+    </div>
+
+    <div class="quote">
+      Константинополь был величайшим городом христианского мира, а стал добычей крестоносцев, шедших освобождать Гроб Господень.
+    </div>
+  </section>
+
+  <!-- 7 КАРТЫ И МАРШРУТЫ (НОВАЯ КАРТИНКА) -->
+  <section class="report-section">
+    <h2><span class="num">7</span>Карты и маршруты крестоносцев</h2>
+    <p>Крестовые походы невозможно представить без карт — именно по ним рыцари прокладывали свои маршруты из Европы на Восток. Перед вами — одна из таких карт, показывающая пути крестоносцев и ключевые точки их продвижения.</p>
+
+    <div class="illustration">
+      <img src="https://cs8.pikabu.ru/post_img/2017/03/12/7/og_og_148931450528392664.jpg" alt="Карта крестовых походов — маршруты движения крестоносцев">
+      <div class="illustration-caption">
+        <b>Карта крестовых походов</b>
+        Маршруты движения крестоносцев из Европы на Восток
+      </div>
+    </div>
+
+    <h3>Что показывает карта</h3>
+    <p>На карте отмечены основные пути, по которым двигались участники крестовых походов. Это помогает понять масштаб предприятия и географию событий:</p>
+    <ul>
+      <li><b>Пути из Европы</b> — через Средиземное море, по суше через Балканы и Малую Азию.</li>
+      <li><b>Ключевые города</b> — Рим, Венеция, Константинополь, Иерусалим, Антиохия.</li>
+      <li><b>Направления походов</b> — от Первого (1096) до последних, включая Четвёртый (1202–1204).</li>
+      <li><b>Государства крестоносцев</b> — Иерусалимское королевство, княжество Антиохийское, графство Эдесское и другие.</li>
+    </ul>
+
+    <div class="callout">
+      <b>Почему это важно:</b> Четвёртый крестовый поход должен был идти в Иерусалим, но из-за долгов Венеции маршрут был изменён — сначала Задар, потом Константинополь. Именно карта помогает увидеть, насколько этот поворот был неожиданным и трагическим.
+    </div>
+  </section>
+
+  <!-- 8 РАЗГРАБЛЕНИЕ -->
+  <section class="report-section">
+    <h2><span class="num">8</span>Разграбление Константинополя</h2>
+    <p>Падение Константинополя в апреле 1204 года стало одним из самых трагических событий в истории христианского мира. Крестоносцы, шедшие «освобождать Гроб Господень», разграбили величайший христианский город Европы.</p>
+    <h3>Что было уничтожено и вывезено</h3>
+    <ul>
+      <li><b>Собор Святой Софии</b> — главный храм православного мира — был осквернён и разграблен.</li>
+      <li><b>Императорский дворец</b> — резиденция византийских императоров — разорён.</li>
+      <li><b>Библиотеки и монастыри</b> — уникальные древние рукописи уничтожены или вывезены.</li>
+      <li><b>Церкви и святыни</b> — осквернены, реликвии вывезены в Европу.</li>
+      <li><b>Население</b> — тысячи убитых, женщины и дети проданы в рабство.</li>
+    </ul>
+    <p>Венеция получила <b>три восьмых всей добычи</b> — самые богатые трофеи, включая знаменитых бронзовых коней с константинопольского ипподрома, которые сегодня украшают собор Святого Марка в Венеции.</p>
+  </section>
+
+  <!-- 9 ИСКУССТВО (НОВАЯ КАРТИНКА) -->
+  <section class="report-section">
+    <h2><span class="num">9</span>Крестовые походы в искусстве</h2>
+    <p>Крестовые походы вдохновляли художников на протяжении веков. Средневековые миниатюры, романтические полотна XIX века и современные реконструкции — все они пытались передать дух той эпохи.</p>
+
+    <div class="illustration">
+      <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6743712109a249421ba007d6_67438a279143321e61410525/scale_1200" alt="Крестовые походы в искусстве — художественное изображение">
+      <div class="illustration-caption">
+        <b>Крестовые походы в искусстве</b>
+        Художественный образ эпохи крестовых походов
+      </div>
+    </div>
+
+    <h3>Как изображали крестовые походы</h3>
+    <p>Искусство помогает нам увидеть крестовые походы глазами разных эпох. Вот что важно понимать:</p>
+    <ul>
+      <li><b>Средневековые миниатюры</b> — изображали рыцарей как защитников веры, подчёркивая религиозный смысл походов.</li>
+      <li><b>Романтические полотна XIX века</b> — представляли крестоносцев благородными героями, часто идеализируя их.</li>
+      <li><b>Современные реконструкции</b> — показывают реальную сложность и трагедию событий, без лишней романтики.</li>
+      <li><b>Символизм</b> — крест на щитах и плащах стал главным символом движения, объединявшим рыцарей из разных стран.</li>
+    </ul>
+
+    <div class="callout">
+      <b>Почему это важно:</b> образ крестовых походов в искусстве менялся вместе с эпохой. То, что раньше виделось подвигом, сегодня часто воспринимается как трагедия. Именно поэтому изучение искусства помогает лучше понять, как менялось отношение к этому событию.
+    </div>
+  </section>
+
+  <!-- 10 ЧТО ПРОИЗОШЛО НА САМОМ ДЕЛЕ -->
+  <section class="report-section">
+    <h2><span class="num">10</span>Что произошло на самом деле</h2>
+    <p>Четвёртый крестовый поход — это история о том, как благие намерения привели к катастрофе. Вот ключевые детали, которые помогают понять истинную суть событий.</p>
+
+    <div class="grid-2">
+      <div class="card-item">
+        <div class="card-icon">💰</div>
+        <div class="card-title">Долг Венеции</div>
+        <div class="card-text">
+          Крестоносцы должны были Венеции <strong>85 000 марок</strong>.
+          Это была огромная сумма — годовой доход английского короля.
+          Чтобы расплатиться, они согласились на всё, что предложил Дандоло.
+        </div>
+      </div>
+
+      <div class="card-item">
+        <div class="card-icon">🏛️</div>
+        <div class="card-title">Богатство Константинополя</div>
+        <div class="card-text">
+          Константинополь был <strong>богатейшим городом</strong> Европы.
+          В нём хранились тысячи реликвий, включая Терновый венец
+          и частицы Животворящего Креста. Многие были вывезены на Запад.
+        </div>
+      </div>
+
+      <div class="card-item">
+        <div class="card-icon">🔥</div>
+        <div class="card-title">Разрушения</div>
+        <div class="card-text">
+          Были уничтожены <strong>библиотеки</strong>, сожжены церкви,
+          разрушены дворцы. Императорская библиотека Константинополя
+          содержала тысячи античных рукописей — многие погибли навсегда.
+        </div>
+      </div>
+
+      <div class="card-item">
+        <div class="card-icon">✝️</div>
+        <div class="card-title">Раскол церквей</div>
+        <div class="card-text">
+          Хотя формальный раскол произошёл в <strong>1054 году</strong>,
+          именно 1204 год сделал его необратимым. Православный мир
+          до сих пор помнит «зверства латинян».
+        </div>
+      </div>
+
+      <div class="card-item">
+        <div class="card-icon">👑</div>
+        <div class="card-title">Латинская империя</div>
+        <div class="card-text">
+          На месте Византии была создана <strong>Латинская империя</strong>
+          во главе с Балдуином Фландрским. Она просуществовала 57 лет
+          и была крайне слабой. Греки не приняли латинских правителей.
+        </div>
+      </div>
+
+      <div class="card-item">
+        <div class="card-icon">⚖️</div>
+        <div class="card-title">Историческая оценка</div>
+        <div class="card-text">
+          Современники были <strong>в шоке</strong>. Многие хронисты
+          осуждали поход. Папа Иннокентий III писал: «Ваш грех
+          не может быть очищен ни слезами, ни кровью». Но было поздно.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 ТАБЛИЦА -->
+  <section class="report-section">
+    <h2><span class="num">11</span>Ключевые события в таблице</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Год</th>
+            <th>Событие</th>
+            <th>Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>1198</b></td>
+            <td>Призыв папы Иннокентия III</td>
+            <td>Начало подготовки похода</td>
+          </tr>
+          <tr>
+            <td><b>1201</b></td>
+            <td>Договор с Венецией</td>
+            <td>Флот за 85 000 марок</td>
+          </tr>
+          <tr>
+            <td><b>1202</b></td>
+            <td>Захват Задара</td>
+            <td>Первый удар по христианам</td>
+          </tr>
+          <tr>
+            <td><b>1203</b></td>
+            <td>Первый штурм Константинополя</td>
+            <td>Возвращение Исаака II</td>
+          </tr>
+          <tr>
+            <td><b>1204</b></td>
+            <td>Падение Константинополя</td>
+            <td>Разграбление города</td>
+          </tr>
+          <tr>
+            <td><b>1204–1261</b></td>
+            <td>Латинская империя</td>
+            <td>57 лет господства крестоносцев</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 12 ИТОГИ -->
+  <section class="report-section">
+    <h2><span class="num">12</span>Итоги и последствия</h2>
+    <p>Четвёртый крестовый поход имел огромные последствия для всей Европы и Ближнего Востока.</p>
+    <h3>Основные последствия</h3>
+    <ul>
+      <li><b>Византия была сильно ослаблена</b> и уже не смогла восстановить былую мощь. Она окончательно пала в 1453 году под ударами турок-османов.</li>
+      <li><b>Раскол между католической и православной церквями</b> стал окончательным — после 1054 года и разграбления 1204 года примирение стало невозможным.</li>
+      <li><b>Венеция стала главной морской державой Средиземноморья</b> и оставалась ею почти 200 лет.</li>
+      <li><b>Крестоносное движение пошло на спад</b> — после такого позорного похода идея крестовых походов потеряла привлекательность.</li>
+      <li><b>На месте Византии была создана Латинская империя</b>, просуществовавшая всего 57 лет (1204–1261).</li>
+    </ul>
+    <div class="callout">
+      <b>Главный итог:</b> крестоносцы так и не дошли до Иерусалима. Он оставался под властью мусульман ещё почти 100 лет — до 1291 года. Поход, начавшийся как религиозная миссия, закончился политическим и моральным провалом.
+    </div>
+  </section>
+
+  <!-- 13 ИНТЕРЕСНЫЕ ФАКТЫ -->
+  <section class="report-section">
+    <h2><span class="num">13</span>Интересные факты</h2>
+    <ul>
+      <li><b>Слепой дож:</b> Энрико Дандоло, венецианский дож, лично командовал флотом крестоносцев, будучи слепым и очень старым — ему было около 90 лет.</li>
+      <li><b>85 000 марок:</b> сумма, которую крестоносцы должны были заплатить Венеции. Это огромные деньги по тем временам — примерно годовой бюджет целого королевства.</li>
+      <li><b>3 дня грабежа:</b> Константинополь грабили три дня. За это время были уничтожены тысячи бесценных произведений искусства.</li>
+      <li><b>Бронзовые кони:</b> знаменитая квадрига с константинопольского ипподрома сегодня украшает собор Святого Марка в Венеции.</li>
+      <li><b>Латинская империя:</b> государство, созданное крестоносцами на месте Византии, просуществовало всего 57 лет — с 1204 по 1261 год.</li>
+      <li><b>Позор папы:</b> Иннокентий III, узнав о разграблении Константинополя, был в ярости и отлучил крестоносцев от церкви — но было уже поздно.</li>
+      <li><b>900 лет истории:</b> Византия существовала почти 900 лет до этого события — с 395 по 1204 год.</li>
+    </ul>
+  </section>
+
+  <!-- 14 ЗНАЧЕНИЕ -->
+  <section class="report-section">
+    <h2><span class="num">14</span>Значение Четвёртого крестового похода</h2>
+    <p>Четвёртый крестовый поход — это пример того, как высокие религиозные идеи могут быть использованы для достижения вполне земных, политических и торговых целей. Поход показал, что за красивыми словами о «спасении Святой Земли» часто скрывались интересы отдельных людей и государств.</p>
+    <p>Изучая это событие, мы понимаем, что история — это не только даты и имена, но и сложные переплетения человеческих мотивов: веры, жадности, амбиций, страха и надежды. Именно поэтому история Средневековья остаётся актуальной и сегодня.</p>
+    <div class="quote">
+      Четвёртый крестовый поход — это не просто военная экспедиция. Это столкновение религиозных идеалов, торговых интересов и политических амбиций.
+    </div>
+  </section>
+
+  <div class="footer-note">
+    <span><span class="heart">♥</span> История Средних веков</span>
+  </div>
+
+</div>
+</div>
+
+<div class="nav-buttons">
+  <button class="nav-btn" id="scrollDown" onclick="scrollToBottom()" title="Вниз">⬇️</button>
+  <button class="nav-btn" id="scrollTop" onclick="scrollToTop()" title="Вверх">⬆️</button>
+</div>
+
+<script>
+const bookIntro = document.getElementById('bookIntro');
+const flash = document.querySelector('.flash');
+let bookOpened = false;
+
+function openBook(){
+  if(bookOpened) return;
+  bookOpened = true;
+  setTimeout(() => flash.classList.add('active'), 1500);
+  setTimeout(() => bookIntro.classList.add('finished'), 1900);
+  setTimeout(() => bookIntro.style.display = 'none', 2400);
+}
+
+bookIntro.addEventListener('click', openBook);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.report-section').forEach(sec => {
+  observer.observe(sec);
+});
+
+const readingProgress = document.getElementById('readingProgress');
+const scrollTopBtn = document.getElementById('scrollTop');
+const scrollDownBtn = document.getElementById('scrollDown');
+
+function updateButtons(){
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  readingProgress.style.width = progress + '%';
+
+  if(scrollTop > 400) scrollTopBtn.classList.add('show');
+  else scrollTopBtn.classList.remove('show');
+
+  if(scrollHeight > 0 && scrollTop < scrollHeight - 100) scrollDownBtn.classList.add('show');
+  else scrollDownBtn.classList.remove('show');
+}
+
+window.addEventListener('scroll', updateButtons);
+window.addEventListener('load', updateButtons);
+window.addEventListener('resize', updateButtons);
+
+function scrollToTop(){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function scrollToBottom(){
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
